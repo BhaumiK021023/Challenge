@@ -26,8 +26,7 @@ public class AccountThread implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		// for(int i=0;i<100;i++) {
+		
 		if (fromAccount.getAccountId().compareTo(toAccount.getAccountId()) < 0) {
 			synchronized (fromAccount) {
 				synchronized (toAccount) {
@@ -56,7 +55,6 @@ public class AccountThread implements Runnable {
 				}
 			}
 		}
-		// }
 	}
 
 }

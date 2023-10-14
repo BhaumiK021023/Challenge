@@ -33,55 +33,45 @@ import javax.validation.Valid;
 @Slf4j
 public class AccountsController {
 
-  private final AccountsService accountsService;
-  
-  private static final Logger log = LoggerFactory.getLogger(AccountsController.class);
+	private final AccountsService accountsService;
 
+	private static final Logger log = LoggerFactory.getLogger(AccountsController.class);
 
-  @Autowired
-  public AccountsController(AccountsService accountsService) {
-    this.accountsService = accountsService;
-  }
+	@Autowired
+	public AccountsController(AccountsService accountsService) {
+		this.accountsService = accountsService;
+	}
 
-  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Object> createAccount(@RequestBody @Valid Account account) {
-    log.info("Creating account {}", account);
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> createAccount(@RequestBody @Valid Account account) {
+		log.info("Creating account {}", account);
 
-    try {
-    this.accountsService.createAccount(account);
-    } catch (DuplicateAccountIdException daie) {
-      return new ResponseEntity<>(daie.getMessage(), HttpStatus.BAD_REQUEST);
-    }
+		try {
+			this.accountsService.createAccount(account);
+		} catch (DuplicateAccountIdException daie) {
+			return new ResponseEntity<>(daie.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 
-    return new ResponseEntity<>(HttpStatus.CREATED);
-  }
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
 
-  @GetMapping(path = "/{accountId}")
-  public Account getAccount(@PathVariable String accountId) {
-    log.info("Retrieving account for id {}", accountId);
-    return this.accountsService.getAccount(accountId);
-  }
+	@GetMapping(path = "/{accountId}")
+	public Account getAccount(@PathVariable String accountId) {
+		log.info("Retrieving account for id {}", accountId);
+		return this.accountsService.getAccount(accountId);
+	}
 
-	/*
-	 * @RequestMapping("/transfer")
-	 * 
-	 * @GetMapping(path ="/{fromAccountId}/{toAccountId}") public List<AccountDTO>
-	 * transferMoney(@PathVariable String fromAccountId, @PathVariable String
-	 * toAccountId){ return
-	 * this.accountsService.transferMoney(fromAccountId,toAccountId);
-	 * 
-	 * }
-	 */
-  
-  @GetMapping("/transfer")
-  public List<AccountDTO> transferMoney(@RequestParam String fromAccountId, @RequestParam BigDecimal fromAccountAmt,
-		  									@RequestParam String toAccountId, @RequestParam BigDecimal toAccountAmt){
-	  
-	  log.info(" TranserMoney api called for fromAccountId {}, fromAccount amount {},"
-	  		+ " toAccountId {}, toAccount amount ", fromAccountId, fromAccountAmt,toAccountId,toAccountAmt);
-	  
-	  return this.accountsService.transferMoney(fromAccountId,toAccountId,fromAccountAmt,toAccountAmt);
-	 
-  }
-  
+	@GetMapping("/transfer")
+	public List<AccountDTO> transferMoney(@RequestParam String fromAccountId, @RequestParam BigDecimal fromAccountAmt,
+			@RequestParam String toAccountId, @RequestParam BigDecimal toAccountAmt) {
+
+		log.info(
+				" TranserMoney api called for fromAccountId {}, fromAccount amount {},"
+						+ " toAccountId {}, toAccount amount ",
+				fromAccountId, fromAccountAmt, toAccountId, toAccountAmt);
+
+		return this.accountsService.transferMoney(fromAccountId, toAccountId, fromAccountAmt, toAccountAmt);
+
+	}
+
 }
