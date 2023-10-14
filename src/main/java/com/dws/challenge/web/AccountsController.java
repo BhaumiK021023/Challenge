@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -63,7 +65,7 @@ public class AccountsController {
 	}
 
 	@GetMapping("/transfer")
-	public List<AccountDTO> transferMoney(@RequestParam String fromAccountId, @RequestParam BigDecimal fromAccountAmt,
+	public ResponseEntity<List<AccountDTO>> transferMoney(@RequestParam String fromAccountId, @RequestParam BigDecimal fromAccountAmt,
 			@RequestParam String toAccountId, @RequestParam BigDecimal toAccountAmt) {
 
 		log.info(
@@ -71,7 +73,12 @@ public class AccountsController {
 						+ " toAccountId {}, toAccount amount ",
 				fromAccountId, fromAccountAmt, toAccountId, toAccountAmt);
         List<AccountDTO> accountList= this.accountsService.transferMoney(fromAccountId, toAccountId, fromAccountAmt, toAccountAmt);
-		return accountList;
+		if(ObjectUtils.isEmpty(accountList)) {
+			return new ResponseEntity<List<AccountDTO>>(HttpStatus.BAD_REQUEST);
+		}else {
+			return new ResponseEntity<List<AccountDTO>>(accountList,HttpStatus.OK);	
+		}
+        
 
 	}
 
