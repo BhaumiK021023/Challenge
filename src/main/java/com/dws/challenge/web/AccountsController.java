@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -69,8 +70,8 @@ public class AccountsController {
 				" TranserMoney api called for fromAccountId {}, fromAccount amount {},"
 						+ " toAccountId {}, toAccount amount ",
 				fromAccountId, fromAccountAmt, toAccountId, toAccountAmt);
-
-		return this.accountsService.transferMoney(fromAccountId, toAccountId, fromAccountAmt, toAccountAmt);
+        List<AccountDTO> accountList= this.accountsService.transferMoney(fromAccountId, toAccountId, fromAccountAmt, toAccountAmt);
+		return accountList;
 
 	}
 
