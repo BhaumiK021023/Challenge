@@ -4,10 +4,10 @@ Module : Account Creation, Find Account by Account ID, Transfer Money between ac
 Implemented transfer money between the accounts simulteniously using Multi thread concept
 
 #**Endpoint**
-  #Transfer Money  
+  
  
- URL : localhost:18080/v1/accounts/transfer?fromAccountId=1&fromAccountAmt=500&toAccountId=2&toAccountAmt=300
- OutPut : 
+ # URL : localhost:18080/v1/accounts/transfer?fromAccountId=1&fromAccountAmt=500&toAccountId=2&toAccountAmt=300
+ # OutPut : 
  [
   {
         "accountId": "1",
