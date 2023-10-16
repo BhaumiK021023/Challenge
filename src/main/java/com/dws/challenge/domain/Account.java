@@ -39,7 +39,7 @@ public class Account {
 		checkAmountNonNegative(amount);
 
 		if (this.balance.compareTo(amount) < 0) {
-			throw new IllegalArgumentException("Not enough money to be withdraw");
+			throw new IllegalArgumentException("Not enough money to be withdraw for account id "+this.accountId);
 		}
 		this.balance = this.balance.subtract(amount);
 
@@ -55,7 +55,7 @@ public class Account {
 
 	private void checkAmountNonNegative(BigDecimal amount) {
 		if (amount.compareTo(BigDecimal.ZERO) < 0) {
-			throw new IllegalArgumentException("Negative amount can be deposited or Withrawed");
+			throw new IllegalArgumentException("Negative amount can be deposited or Withrawed for account id "+this.accountId);
 		}
 
 	}
