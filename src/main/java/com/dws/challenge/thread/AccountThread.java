@@ -1,4 +1,4 @@
-package com.dws.challenge.Thread;
+package com.dws.challenge.thread;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

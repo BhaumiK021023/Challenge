@@ -1,4 +1,4 @@
-package com.dws.challenge.DTO;
+package com.dws.challenge.dto;
 
 import java.math.BigDecimal;
 

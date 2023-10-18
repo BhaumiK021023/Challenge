@@ -1,9 +1,9 @@
 package com.dws.challenge.service;
 
-import com.dws.challenge.DTO.AccountDTO;
-import com.dws.challenge.Thread.AccountThread;
 import com.dws.challenge.domain.Account;
+import com.dws.challenge.dto.AccountDTO;
 import com.dws.challenge.repository.AccountsRepository;
+import com.dws.challenge.thread.AccountThread;
 import com.dws.challenge.web.AccountsController;
 
 import lombok.Getter;

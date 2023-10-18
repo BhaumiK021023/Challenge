@@ -1,7 +1,7 @@
 package com.dws.challenge.web;
 
-import com.dws.challenge.DTO.AccountDTO;
 import com.dws.challenge.domain.Account;
+import com.dws.challenge.dto.AccountDTO;
 import com.dws.challenge.exception.DuplicateAccountIdException;
 import com.dws.challenge.service.AccountsService;
 import com.dws.challenge.service.NotificationService;
